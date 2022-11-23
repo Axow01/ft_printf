@@ -6,38 +6,48 @@
 /*   By: mmarcott <mmarcott@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:44:51 by mmarcott          #+#    #+#             */
-/*   Updated: 2022/11/23 01:43:06 by mmarcott         ###   ########.fr       */
+/*   Updated: 2022/11/23 02:50:34 by mmarcott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 
-int	counting(char *string)
+int	output_type(va_list list, char c)
 {
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (string[i])
-	{
-		if (string[i] == '%' && !(string[i + 1] == '%' || string[i + 1] == '\0'
-				|| string[i + 1] == ' '))
-			count++;
-		i++;
-	}
-	return (count);
+	if (c == 'd')
+		ft_putstr_fd(ft_itoa(va_arg(list, int)), 1);
+	if (c == 's')
+		ft_putstr_fd(va_arg(list, char *), 1);
+	return (0);
 }
 
 void	ft_printf(char *string, ...)
 {
-	//va_list	args;
-	//va_start(args, counting(string));
-	printf("Count: %d\n", counting(string));
+	va_list	args;
+	int		i;
+
+	i = 0;
+	va_start(args, string);
+	while (string[i])
+	{
+		if (string[i] != '%')
+			ft_putchar_fd(string[i], 1);
+		else
+		{
+			if (string[i + 1] == 0)
+				continue ;
+			output_type(args, string[++i]);
+		}
+		i++;
+	}
+	va_end(args);
 }
 
 int	main(void)
 {
-	ft_printf("Bonjour les gens %s %% %a");
+	char	*test;
+
+	test = "bonjour";
+	ft_printf("Bonjour les gens %d %s %d\n", 10, test, 45);
 	return (0);
 }
