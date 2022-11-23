@@ -6,7 +6,7 @@
 /*   By: mmarcott <mmarcott@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:44:51 by mmarcott          #+#    #+#             */
-/*   Updated: 2022/11/23 03:03:04 by mmarcott         ###   ########.fr       */
+/*   Updated: 2022/11/23 03:12:17 by mmarcott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	output_type(va_list list, char c)
 {
 	if (c == 'd')
-		return (ft_putnbr_fd(va_arg(list, int), STDOUT_FILENO));
+		ft_putnbr_fd(va_arg(list, int), STDOUT_FILENO);
 	if (c == 's')
-		return (ft_putstr_fd(va_arg(list, char *), STDOUT_FILENO));
+		ft_putstr_fd(va_arg(list, char *), STDOUT_FILENO);
 	return (0);
 }
 
@@ -52,8 +52,7 @@ int	main(void)
 	int		a;
 
 	test = "bonjour";
-	a = ft_printf("%dBonjour les gens %d %s %d\n%s", 10, 32, test, 45,
-			"bonsoir");
+	a = ft_printf("TEsting !!!!! %s", "bonjour\n");
 	ft_printf("%d\n", a);
 	return (0);
 }
