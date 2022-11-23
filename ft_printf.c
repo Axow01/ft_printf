@@ -6,7 +6,7 @@
 /*   By: mmarcott <mmarcott@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:44:51 by mmarcott          #+#    #+#             */
-/*   Updated: 2022/11/23 03:12:17 by mmarcott         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:26:49 by mmarcott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int	output_type(va_list list, char c)
 {
+	int	count;
+
+	count = 0;
 	if (c == 'd')
-		ft_putnbr_fd(va_arg(list, int), STDOUT_FILENO);
+		return (ft_putnbr_fd(va_arg(list, int), STDOUT_FILENO));
 	if (c == 's')
-		ft_putstr_fd(va_arg(list, char *), STDOUT_FILENO);
+		return (ft_putstr_fd(va_arg(list, char *), STDOUT_FILENO));
 	return (0);
 }
 
@@ -28,12 +31,15 @@ int	ft_printf(char *string, ...)
 	int		total;
 
 	i = 0;
-	total = ft_strlen(string);
+	total = 0;
 	va_start(args, string);
 	while (string[i])
 	{
 		if (string[i] != '%')
+		{
 			ft_putchar_fd(string[i], 1);
+			total++;
+		}
 		else
 		{
 			if (string[i + 1] == 0)
@@ -54,5 +60,6 @@ int	main(void)
 	test = "bonjour";
 	a = ft_printf("TEsting !!!!! %s", "bonjour\n");
 	ft_printf("%d\n", a);
+	ft_putnbr_base_ul(10, HEX);
 	return (0);
 }
