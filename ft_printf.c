@@ -6,7 +6,7 @@
 /*   By: mmarcott <mmarcott@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:44:51 by mmarcott          #+#    #+#             */
-/*   Updated: 2022/11/23 18:33:48 by mmarcott         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:18:55 by mmarcott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	output_type(va_list list, char c)
 	return (0);
 }
 
-int	ft_printf(char *string, ...)
+int	ft_printf(const char *string, ...)
 {
 	va_list	args;
 	int		i;
